@@ -9,7 +9,7 @@ function App() {
     <>
       <div className="flex flex-col">
         <Nav />
-        <main className="h-screen flex justify-around">
+        <main className="flex justify-around">
           <Content />
           <Aside />
         </main>
