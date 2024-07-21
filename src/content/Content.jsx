@@ -10,12 +10,18 @@ import tabulate from '../assets/tabulate.png';
 import toDateTime from '../assets/toDateTime.png';
 import hkTime from '../assets/hkTime.png';
 import title from '../assets/title.png';
+import durationSumCode from '../assets/durationSumCode.png';
+import durationSum from '../assets/durationSum.png';
+import topShows from '../assets/topShows.png';
+import weekdays from '../assets/weekdays.png';
+import weekdayscode from '../assets/weekdayscode.png';
+import hour from '../assets/hour.png';
 
 function Content() {
   return (
     <div className="w-[65ch] text-gray-700 text-lg mb-20">
       <section>
-        <h3>Introduction</h3>
+        <h3 id="introduction">Introduction</h3>
         <p>
           For the past couple of years, I've been making a transition to
           Computer Science and exploring some of the areas of the subject. This
@@ -48,7 +54,7 @@ function Content() {
       </section>
 
       <section>
-        <h3>Read the Dataset</h3>
+        <h3 id="readData">Read the Dataset</h3>
         <p>
           After some exploration in the Netflix data folder, the
           ViewingActivity.csv file in the CONTENT_INTERACTION folder seems like
@@ -93,7 +99,7 @@ function Content() {
       </section>
 
       <section>
-        <h3>Data Preprocessing</h3>
+        <h3 id="preprocessing">Data Preprocessing</h3>
         <p>
           Since this is a shared Netflix account, I'll first have to drop rows
           that belong to other people and just retain my data. I used the{' '}
@@ -171,7 +177,57 @@ function Content() {
       </section>
 
       <section>
-        <h3>Data Analysis</h3>
+        <h3 id="dataAnalysis">Data Analysis and Visualization</h3>
+        <p>
+          I will start the analysis by finding the total duration of the shows
+          and movies I watched on Netflix. It can be achieved using the{' '}
+          <span className="text-pink-500">groupby()</span> and{' '}
+          <span> className='text-pink-500'sum()</span> functions together. The
+          total time comes out to be{' '}
+          <span className="text-pink-500">92 days 17 hours!</span>
+        </p>
+        <img src={durationSumCode} alt="Code to find duration of tv shows." />
+        <p>My top 10 shows are:</p>
+        <img src={durationSum} alt="Total duration of tv shows watched." />
+        <p>
+          For visualizing this data, I will use the Seaborn library which
+          provides a large variety of color palettes and themes for making
+          appealing graphs.
+        </p>
+        <img
+          className="transition ease-in-out duration-500 hover:scale-[2.5] hover:translate-x-72 border-blue-300 border-2"
+          src={topShows}
+          alt="Bar plot showing my top 10 watched shows."
+        />
+        <p>
+          Next, we'll analyze the 'Start Time' column by finding out the number
+          of episodes I watched each day of the week using the{' '}
+          <span className="text-pink-500">weekday</span> attribute. This can be
+          done using the <span className="text-pink-500">groupby().size()</span>{' '}
+          method. It can be seen there is not much variation throughout the
+          week.
+        </p>
+        <img
+          src={weekdayscode}
+          alt="Code for finding out episodes watched per day."
+        />
+        <img
+          className="transition ease-in-out duration-500 hover:scale-[2] hover:translate-x-72 border-blue-300 border-2"
+          src={weekdays}
+          alt="Plot of episodes watched per day of week."
+        />
+        <p>
+          In a similar way, we can view the number of episodes watched by hour
+          of the day using the <span className="text-pink-500">hour</span>{' '}
+          attribute. The data shows a trend that I watch a few episodes during
+          the day and the most in the evening, but not very late at night -
+          which makes sense coz I'm more of a morning person.
+        </p>
+        <img
+          className="transition ease-in-out duration-500 hover:scale-[2] hover:translate-x-72 border-blue-300 border-2"
+          src={hour}
+          alt="Plot of episodes watched by hour of the day"
+        />
       </section>
     </div>
   );
