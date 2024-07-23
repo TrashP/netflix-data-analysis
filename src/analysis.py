@@ -27,16 +27,21 @@ df = df[df['Duration'] > '0 days 00:01:00']
 # Edit title column to drop episode names
 df['Title'] = df['Title'].str.replace(':.*', '', regex=True)
 
-# Find and plot the number of episodes watched on each weekday
-df['Hour'] = df['Start Time'].dt.hour
-dfdaysum = df.groupby(['Hour']).size().reset_index(name='Episodes')
-dfdaysum = dfdaysum.sort_values('Hour')
+# Analyze viewing pattern for Brooklyn Nine-Nine
+df.drop(df[df['Title'] != 'Brooklyn Nine-Nine'].index, inplace=True)
+dfbnn = df.drop(['Duration'], axis=1)
+dfbnn['Hour'] = dfbnn['Start Time'].dt.hour
+dfbnn.sort_index(ascending=False, inplace=True)
 sns.set_palette('pastel')
-sns.barplot(data=dfdaysum, x='Hour', y='Episodes')
+sns.scatterplot(x='Start Time', y='Hour', data=dfbnn)
 plt.show()
 
 
 ###                 ###                 ###
+
+# List every show and movie in the title column
+# dftitle = df['Title'].drop_duplicates()
+# print(tabulate(list(map(lambda x: [x], dftitle)), tablefmt='psql', headers=['Title']))
 
 # Find duration of each show and total time
 # dfduration = df.drop(['Start Time'], axis=1)
@@ -61,6 +66,10 @@ plt.show()
 # sns.barplot(data=dfdaysum, x='Weekday', y='Episodes')
 # plt.show()
 
-# List every show and movie in the title column
-# dftitle = df['Title'].drop_duplicates()
-# print(tabulate(list(map(lambda x: [x], dftitle)), tablefmt='psql', headers=['Title']))
+# Find and plot the number of episodes watched by each hour
+# df['Hour'] = df['Start Time'].dt.hour
+# dfdaysum = df.groupby(['Hour']).size().reset_index(name='Episodes')
+# dfdaysum = dfdaysum.sort_values('Hour')
+# sns.set_palette('pastel')
+# sns.barplot(data=dfdaysum, x='Hour', y='Episodes')
+# plt.show()

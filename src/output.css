@@ -1105,6 +1105,10 @@ video {
   margin-right: 3rem;
 }
 
+.ml-32 {
+  margin-left: 8rem;
+}
+
 .box-border {
   box-sizing: border-box;
 }

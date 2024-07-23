@@ -16,6 +16,8 @@ import topShows from '../assets/topShows.png';
 import weekdays from '../assets/weekdays.png';
 import weekdayscode from '../assets/weekdayscode.png';
 import hour from '../assets/hour.png';
+import scattercode from '../assets/scattercode.png';
+import scatter from '../assets/scatter.png';
 
 function Content() {
   return (
@@ -182,7 +184,7 @@ function Content() {
           I will start the analysis by finding the total duration of the shows
           and movies I watched on Netflix. It can be achieved using the{' '}
           <span className="text-pink-500">groupby()</span> and{' '}
-          <span> className='text-pink-500'sum()</span> functions together. The
+          <span className="text-pink-500"> sum()</span> functions together. The
           total time comes out to be{' '}
           <span className="text-pink-500">92 days 17 hours!</span>
         </p>
@@ -228,6 +230,66 @@ function Content() {
           src={hour}
           alt="Plot of episodes watched by hour of the day"
         />
+        <p>
+          Next up, I want to analyze by favourite show - Brooklyn Nine-Nine. As
+          calculated above, I have watched B99 for a cumulative duration of 13
+          days. Thats a lot of time spent on one shows! Now I would like to see
+          how my B99 viewing history is spread over the past 3 years.
+        </p>
+        <p>
+          First, I drop all rows where{' '}
+          <span className="text-pink-500">Title</span> is not equal to{' '}
+          <span className="text-pink-500">Brooklyn Nine-Nine</span>, and then
+          drop the 'Duration' column. To find out what times I watched the show,
+          I create a new column using the{' '}
+          <span className="text-pink-500">dt.hour</span> attribute. Finally, I
+          create a Seaborn scatterplot with the x-axis set to 'Start Time' and
+          y-axis as 'Hour'.
+        </p>
+        <img
+          src={scattercode}
+          alt="Code for scatter plot of Brooklyn Nine Nine."
+        />
+        <p>
+          We can see 7 distinct columns in the scatter plot - this suggests that
+          I've watched Brooklyn Nine-Nine 6 or 7 time, which sounds about right.
+          The points are also distributed throughout the day, since I often put
+          on the show while doing something else like exercise.
+        </p>
+        <img
+          className="transition ease-in-out duration-500 hover:scale-[2] hover:translate-x-72 border-blue-300 border-2"
+          src={scatter}
+          alt="Scatter plot of Brooklyn Nine Nine."
+        />
+      </section>
+      <section>
+        <h3 id="conclusion">Conclusion</h3>
+        <p>
+          That brings us to the end of this data analysis and thanks to my
+          binge-watching, I had quite a good data set to work with. In the
+          process of reading, cleaning, preprocessing, and analyzing this data,
+          I became familiar with various python and Pandas methods required for
+          analyzing different types of data.
+        </p>
+        <p>
+          If you would also like to follow along this project, you can acquire
+          your Netflix data with the steps mentioned above and use my code from{' '}
+          <a
+            className="text-blue-500"
+            href="https://github.com/TrashP/netflix-data-analysis"
+          >
+            GitHub
+          </a>
+          .
+        </p>
+        <p>
+          {' '}
+          Even though this project was rather simple and didn't cover all my
+          viewing activities, it was a good exercise to introduce the concepts
+          of data analysis. I would like to build on this foundation and tackle
+          some more complex problems in this area. This provided with me a good
+          starting point for my next project and possibly my next job!
+        </p>
       </section>
     </div>
   );
